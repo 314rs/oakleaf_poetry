@@ -2,9 +2,12 @@ import tkinter as tk
 import random
 from tkinter import ttk
 import os
-os.chdir(os.path.dirname(os.path.abspath(__file__)))
 random.seed()
 
+# set working directory to current directory
+os.chdir(os.path.dirname(os.path.abspath(__file__)))
+
+# generate window
 window = tk.Tk()
 window.title("Poetry")
 screen_width = window.winfo_screenwidth()
@@ -13,6 +16,8 @@ window.attributes('-fullscreen', True)
 window.minsize(500, 500)
 style = ttk.Style(window)
 style.configure(".", font=("Century Gothic", 24, "bold"), bg="najavo while")
+
+# get 3 random words from words.txt
 words = set()
 try:
     f = open("words.txt", "r")
@@ -26,6 +31,7 @@ except Exception as e:
 #print(words)
 
 
+# tkinter stuff here
 window.columnconfigure(0,weight=2)
 window.columnconfigure(1,weight=3)
 window.rowconfigure(0,weight=1)
@@ -48,6 +54,7 @@ entry.focus()
 entry.grid(column=1, row=1, rowspan=3, padx=20, pady=20, sticky=tk.NS)
 
 
+# when button is clicked
 def button_click():
     entry_text = entry.get("1.0", "end").rstrip()
     #check if entry_text contains any letters
@@ -79,6 +86,5 @@ def button_click():
 
 btn_submit = ttk.Button(window, text="Abschicken", command=button_click)
 btn_submit.grid(column=1, row=4)
-
 
 window.mainloop()

@@ -2,6 +2,9 @@ import os
 import random
 random.seed()
 
+# set working directory to current directory
+os.chdir(os.path.dirname(os.path.abspath(__file__)))
+
 # get a list of all available files
 files_set = set()
 for path in os.listdir("poems"):
