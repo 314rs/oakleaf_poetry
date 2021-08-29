@@ -15,18 +15,22 @@ screen_height = window.winfo_screenheight()
 window.attributes('-fullscreen', True)
 window.minsize(500, 500)
 style = ttk.Style(window)
-style.configure(".", font=("Century Gothic", 24, "bold"), bg="najavo while")
+style.configure(".", font=("Century Gothic", 24, "bold"))
 
 # get 3 random words from words.txt
-words = set()
-try:
-    f = open("words.txt", "r")
-    lines = f.readlines()
-    f.close()
-    while (len(words) < 3):
-        words.add(lines[random.randint(0, len(lines))])
-except Exception as e:
-    print("There is no file. " + str(e))
+def get_words():
+    words = set()
+    try:
+        f = open("words.txt", "r")
+        lines = f.readlines()
+        f.close()
+        while (len(words) < 3):
+            words.add(lines[random.randint(0, len(lines))])
+    except Exception as e:
+        print("There is no file. " + str(e))
+    return list(words)
+
+words_list = get_words()
 
 #print(words)
 
@@ -42,7 +46,6 @@ window.rowconfigure(4,weight=1)
 
 lbl_task = ttk.Label(window, text="Schreibe ein Gedicht, dass die folgenden drei Wörter enthält!")
 lbl_task.grid(column=0, row=0, columnspan=3, padx=10, pady=10)
-words_list = list(words)
 lbl_w0 = ttk.Label(window, text=words_list[0])
 lbl_w1 = ttk.Label(window, text=words_list[1])
 lbl_w2 = ttk.Label(window, text=words_list[2])
@@ -80,6 +83,11 @@ def button_click():
         for line in entry_lines:
             pdf.cell(190, 10 , line, 0, 1, "C")
         pdf.output("poems/{:04d}.pdf".format(number))
+        words_list = get_words()
+        lbl_w0.config(text=words_list[0])
+        lbl_w1.config(text=words_list[1])
+        lbl_w2.config(text=words_list[2])
+
 
 
 
