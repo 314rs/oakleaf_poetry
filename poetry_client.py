@@ -96,9 +96,6 @@ def button_click():
         for line in lines_broken:
             pdf.cell(190, 10 , line, 0, 1, "C")
 
-            
-
-
         pdf.output("poems/{:04d}.pdf".format(number))
         words_list = get_words()
         lbl_w0.config(text=words_list[0])
@@ -106,6 +103,14 @@ def button_click():
         lbl_w2.config(text=words_list[2])
 
 
+# not used for now
+def print_to_pdf(lines):
+    from fpdf import FPDF
+    pdf = FPDF("P", "mm", "A4")
+    pdf.add_page()
+    font_size = 24
+    pdf.set_font("Courier", "B", font_size)
+    font_sizes = list()
 
 
 
