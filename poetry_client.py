@@ -5,6 +5,7 @@ import random
 from tkinter import ttk
 import os
 from tkinter import font
+from poem_to_pdf import poem_to_pdf
 
 import fpdf
 random.seed()
@@ -79,23 +80,7 @@ def button_click():
             poem.write(entry_text)
             poem.close()
             entry.delete("1.0", "end")
-        from fpdf import FPDF
-        entry_lines = entry_text.splitlines()
-        pdf = FPDF("P", "mm", "A4")
-        pdf.add_page()
-        font_size = 24
-        pdf.set_font("Courier", "B", font_size)
-        lines_broken = list()
-        for line in entry_lines:
-            mylen = len(line)
-            i = 0
-            while i < mylen:
-                lines_broken.append(line[i:i+35])
-                i += 35
-        pdf.set_y(297/2-len(lines_broken)*10/2)
-        for line in lines_broken:
-            pdf.cell(190, 10 , line, 0, 1, "C")
-
+        pdf = poem_to_pdf(entry_text, mode=1)
         pdf.output("poems/{:04d}.pdf".format(number))
         words_list = get_words()
         lbl_w0.config(text=words_list[0])

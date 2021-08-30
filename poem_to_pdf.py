@@ -14,7 +14,7 @@ def poem_to_pdf(text, mode=0, orientation="P", font_size=24):
     pdf.add_page()
     pdf.set_font("Courier", "B", font_size)
 
-    if mode == 2:
+    if mode == 1:
         for line in lines:
             if line == "":
                 lines_final.append({"line":"", "font_size": 20})
@@ -26,7 +26,7 @@ def poem_to_pdf(text, mode=0, orientation="P", font_size=24):
                     pdf.set_font_size(font_size)
                 lines_final.append({"line":line, "font_size":font_size-1})
 
-    if mode == 3:
+    elif mode == 2:
         font_size = 1
         pdf.set_font_size(font_size)
         maxline=max(lines, key=pdf.get_string_width)
