@@ -103,17 +103,6 @@ def button_click():
         lbl_w2.config(text=words_list[2])
 
 
-# not used for now
-def print_to_pdf(lines):
-    from fpdf import FPDF
-    pdf = FPDF("P", "mm", "A4")
-    pdf.add_page()
-    font_size = 24
-    pdf.set_font("Courier", "B", font_size)
-    font_sizes = list()
-
-
-
 btn_submit = ttk.Button(window, text="Abschicken", command=button_click)
 btn_submit.grid(column=1, row=4)
 
