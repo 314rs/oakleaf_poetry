@@ -13,8 +13,9 @@ def poem_to_pdf(text, mode=0, orientation="P", font_size=24):
     pdf = FPDF(orientation, "mm", "A4")
     pdf.add_page()
     pdf.set_font("Courier", "B", font_size)
-
+    middle = True
     if mode == 1:
+        middle = False
         for line in lines:
             if line == "":
                 lines_final.append({"line":"", "font_size": 20})
@@ -56,7 +57,10 @@ def poem_to_pdf(text, mode=0, orientation="P", font_size=24):
     lines_height = 0
     for line in lines_final:
         lines_height += line["font_size"] * 0.353
-    pdf.set_y((pdf.h-(lines_height%(pdf.h-20)))/2)
+    if middle:
+        pdf.set_y((pdf.h-(lines_height%(pdf.h-20)))/2)
+    else:
+        pdf.set_xy(10,10)
     for line in lines_final:
         pdf.set_font_size(line["font_size"])
         pdf.cell(pdf.w-20, line["font_size"] * 0.353 , line["line"], 0, 1, "C")

@@ -27,11 +27,11 @@ style.configure(".", font=("Century Gothic", 24, "bold"))
 def get_words():
     words = set()
     try:
-        f = open("words.txt", "r")
+        f = open("words.txt", "r", encoding="utf-8")
         lines = f.readlines()
         f.close()
         while (len(words) < 3):
-            words.add(lines[random.randint(0, len(lines))])
+            words.add(lines[random.randint(0, len(lines)-1)].rstrip())
     except Exception as e:
         print("There is no file. " + str(e))
     return list(words)
@@ -76,7 +76,7 @@ def button_click():
         while "{:04d}".format(number) in numbers_set:
             number += 1
         #write poem to file
-        with open("poems/{:04d}.txt".format(number), "w+") as poem:
+        with open("poems/{:04d}.txt".format(number), "w+", encoding="utf-8") as poem:
             poem.write(entry_text)
             poem.close()
             entry.delete("1.0", "end")
