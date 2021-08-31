@@ -4,10 +4,12 @@
 
 ### FPDF
 
+The script needs fpdf to be installed on the client computer. To install it use:
+
 ```cmd
 pip install fpdf
 ```
-or
+or:
 ```cmd
 python -m pip install fpdf
 ```
@@ -27,4 +29,4 @@ python -m pip install fpdf
 
 ### poetry_printer.py:
 - choose a random PDF from ./poems
-- print it using the windows-standart-printer
+- print it using the windows-standard-printer
