@@ -30,3 +30,6 @@ python -m pip install fpdf
 ### poetry_printer.py:
 - choose a random PDF from ./poems
 - print it using the windows-standard-printer
+
+## Mitmachen:
+https://projekt-rezepte.de/partizipation/
